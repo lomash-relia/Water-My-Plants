@@ -19,12 +19,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   }
 
   FutureOr<void> homeInitialEvent(
-      HomeInitialEvent event, Emitter<HomeState> emit) {
+      HomeInitialEvent event, Emitter<HomeState> emit) async {
     print('Home Initial Event triggered');
     emit(HomeLoadingState());
-    Future.delayed(const Duration(seconds: 10));
-    print('sending loaded state');
+    await Future.delayed(const Duration(seconds: 3));
     emit(HomeLoadedSuccessState(plants: PlantsList.plantsList));
+    print('Home Loaded Successfully');
   }
 
   FutureOr<void> homeAddPlantButtonNavigateEvent(
@@ -36,6 +36,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> homeShopButtonNavigateEvent(
       HomeShopButtonNavigateEvent event, Emitter<HomeState> emit) {
     //navigate to shop
+    emit(HomeNavigateToShopState());
   }
 
   FutureOr<void> homeInfoButtonNavigateEvent(
@@ -46,8 +47,9 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> homeAddPlantEvent(
       HomeAddPlantEvent event, Emitter<HomeState> emit) {
     PlantsList.plantsList.add(event.newPlant);
-    print('plant added');
+    print('plant added to list');
     emit(HomeLoadedSuccessState(plants: PlantsList.plantsList));
-    print('success state');
+    print('home success state');
+    print(PlantsList.plantsList);
   }
 }

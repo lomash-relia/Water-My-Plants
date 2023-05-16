@@ -13,36 +13,39 @@ class PlantTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.black),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      margin: const EdgeInsets.all(10),
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        children: [
-//          Image.network();
-          Text(
-            homePlantModel.name,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 10,
-            width: double.maxFinite,
-          ),
-          Text(
-            homePlantModel.location,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            homePlantModel.description,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          )
-        ],
+    return Padding(
+      padding: const EdgeInsets.only(right: 14.0, left: 14.0, top: 14.0),
+      child: Container(
+        decoration: BoxDecoration(
+          border: Border.all(color: Colors.black),
+          borderRadius: BorderRadius.circular(10),
+        ),
+        margin: const EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              homePlantModel.name,
+              style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 10,
+              width: double.maxFinite,
+            ),
+            Text(
+              homePlantModel.location,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              homePlantModel.description,
+              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+            )
+          ],
+        ),
       ),
     );
   }

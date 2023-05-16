@@ -25,17 +25,18 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          homeBloc.add(HomeAddPlantButtonNavigateEvent());
+        },
+        child: const Icon(Icons.add),
+      ),
       appBar: AppBar(
+        elevation: 0,
         title: const Text(
           'Water My Plants',
         ),
         actions: [
-          IconButton(
-            onPressed: () {
-              homeBloc.add(HomeAddPlantButtonNavigateEvent());
-            },
-            icon: const Icon(Icons.add_circle_outline),
-          ),
           IconButton(
               onPressed: () {
                 homeBloc.add(HomeShopButtonNavigateEvent());
