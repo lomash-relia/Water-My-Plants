@@ -17,19 +17,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => AddPlantPage()));
-        },
-        elevation: 0,
-        child: const Icon(Icons.add),
-      ),
       appBar: AppBar(
         title: const Text(
           'Water My Plants',
         ),
         actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.add_circle_outline),
+          ),
           IconButton(
               onPressed: () {}, icon: const Icon(Icons.shopping_bag_outlined)),
           IconButton(
