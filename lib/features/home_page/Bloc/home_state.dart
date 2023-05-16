@@ -5,7 +5,13 @@ abstract class HomeState {}
 
 class HomeInitial extends HomeState {}
 
-class HomeLoadedSuccessState extends HomeState {}
+class HomeLoadingState extends HomeState {}
+
+class HomeLoadedSuccessState extends HomeState {
+  final List<HomePlantModel> plants;
+
+  HomeLoadedSuccessState({required this.plants});
+}
 
 class HomeErrorState extends HomeState {}
 
@@ -16,3 +22,5 @@ class HomeNavigateToShopState extends HomeActionState {}
 class HomeNavigateToInfoState extends HomeActionState {}
 
 class HomeNavigateToAddPlantState extends HomeActionState {}
+
+class HomeAddPlantState extends HomeState {}

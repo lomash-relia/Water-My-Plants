@@ -5,8 +5,14 @@ abstract class HomeEvent {}
 
 class HomeInitialEvent extends HomeEvent {}
 
-class HomeShopButtonNavigateClickedEvent extends HomeEvent {}
+class HomeAddPlantButtonNavigateEvent extends HomeEvent {}
 
-class HomeInfoButtonNavigateClickedEvent extends HomeEvent {}
+class HomeShopButtonNavigateEvent extends HomeEvent {}
 
-class FloatingActionButtonClickedEvent extends HomeEvent {}
+class HomeInfoButtonNavigateEvent extends HomeEvent {}
+
+class HomeAddPlantEvent extends HomeEvent {
+  final HomePlantModel newPlant;
+
+  HomeAddPlantEvent({required this.newPlant});
+}

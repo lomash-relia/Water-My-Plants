@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:watermyplants/features/home_page/Bloc/home_bloc.dart';
+import 'package:watermyplants/features/home_page/models/HomePlantModel.dart';
 
-class AddPlantPage extends StatefulWidget {
-  const AddPlantPage({Key? key}) : super(key: key);
+class AddPlantPage extends StatelessWidget {
+  AddPlantPage({Key? key, required this.homeBloc}) : super(key: key);
 
-  @override
-  State<AddPlantPage> createState() => _AddPlantPageState();
-}
+  final HomeBloc homeBloc;
 
-class _AddPlantPageState extends State<AddPlantPage> {
   TextEditingController titleController = TextEditingController();
+
   TextEditingController descriptionController = TextEditingController();
+
   TextEditingController locationController = TextEditingController();
 
   @override
@@ -55,11 +56,17 @@ class _AddPlantPageState extends State<AddPlantPage> {
               ),
             ),
             const SizedBox(
-              height: 15,
+              height: 20,
             ),
             ElevatedButton(
-              onPressed: () {},
-              child: const Text('Submit'),
+              onPressed: () {
+                HomePlantModel newPlant = HomePlantModel(
+                    name: titleController.text,
+                    description: descriptionController.text,
+                    location: locationController.text);
+                homeBloc.add(HomeAddPlantEvent(newPlant: newPlant));
+              },
+              child: const Text('SUBMIT'),
             ),
           ],
         )),
