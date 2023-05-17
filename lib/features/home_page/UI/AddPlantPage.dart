@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:watermyplants/features/home_page/Bloc/home_bloc.dart';
 import 'package:watermyplants/features/home_page/models/HomePlantModel.dart';
 
 class AddPlantPage extends StatelessWidget {
   AddPlantPage({Key? key, required this.homeBloc}) : super(key: key);
 
+  Box<HomePlantModel> box = Hive.box('plants');
   final HomeBloc homeBloc;
 
-  TextEditingController titleController = TextEditingController();
+  final TextEditingController titleController = TextEditingController();
 
-  TextEditingController descriptionController = TextEditingController();
+  final TextEditingController descriptionController = TextEditingController();
 
-  TextEditingController locationController = TextEditingController();
+  final TextEditingController locationController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -59,14 +61,17 @@ class AddPlantPage extends StatelessWidget {
               height: 20,
             ),
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 HomePlantModel newPlant = HomePlantModel(
                     name: titleController.text,
                     description: descriptionController.text,
                     location: locationController.text);
+
+                box.add(newPlant);
+                print('--------plant added in storage ------');
                 homeBloc.add(HomeAddPlantEvent(newPlant: newPlant));
               },
-              child: const Text('SUBMIT'),
+              child: const Text('SUBMIT PLANT'),
             ),
           ],
         )),

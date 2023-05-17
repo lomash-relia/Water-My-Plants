@@ -24,3 +24,5 @@ class HomeNavigateToInfoState extends HomeActionState {}
 class HomeNavigateToAddPlantState extends HomeActionState {}
 
 class HomeAddPlantState extends HomeState {}
+
+class HomeRefreshActionState extends HomeActionState {}
