@@ -16,6 +16,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<HomeAddPlantEvent>(homeAddPlantEvent);
     on<HomeShopButtonNavigateEvent>(homeShopButtonNavigateEvent);
     on<HomeInfoButtonNavigateEvent>(homeInfoButtonNavigateEvent);
+    on<HomeDeletePlantEvent>(homeDeletePlantEvent);
   }
 
   FutureOr<void> homeInitialEvent(
@@ -38,6 +39,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     print(PlantsList.plantsList);
   }
 
+  FutureOr<void> homeDeletePlantEvent(
+      HomeDeletePlantEvent event, Emitter<HomeState> emit) {
+    PlantsList.plantsList.remove(event.newPlant);
+    emit(HomeDeletePlantState());
+  }
+
   FutureOr<void> homeAddPlantButtonNavigateEvent(
       HomeAddPlantButtonNavigateEvent event, Emitter<HomeState> emit) {
     //navigate to add new plant page
@@ -53,5 +60,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> homeInfoButtonNavigateEvent(
       HomeInfoButtonNavigateEvent event, Emitter<HomeState> emit) {
     //navigate to info page
+    emit(HomeNavigateToInfoState());
   }
 }

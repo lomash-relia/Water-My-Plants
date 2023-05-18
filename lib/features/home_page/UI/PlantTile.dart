@@ -33,17 +33,32 @@ class PlantTile extends StatelessWidget {
               height: 10,
               width: double.maxFinite,
             ),
-            Text(
-              homePlantModel.location,
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(children: [
+                  Text(
+                    homePlantModel.location,
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w500),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    homePlantModel.description,
+                    style: const TextStyle(
+                        fontSize: 15, fontWeight: FontWeight.w500),
+                  ),
+                ]),
+                IconButton(
+                    onPressed: () {
+                      homeBloc
+                          .add(HomeDeletePlantEvent(newPlant: homePlantModel));
+                    },
+                    icon: const Icon(Icons.delete_forever_outlined))
+              ],
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            Text(
-              homePlantModel.description,
-              style: const TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-            )
           ],
         ),
       ),

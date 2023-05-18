@@ -62,11 +62,11 @@ class _HomePageState extends State<HomePage> {
                           homeBloc: homeBloc,
                         )));
           } else if (state is HomeNavigateToShopState) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => ShopPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const ShopPage()));
           } else if (state is HomeNavigateToInfoState) {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => InfoPage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const InfoPage()));
           }
         },
         builder: (context, state) {
@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
             default:
               return const Center(
                 child: Text(
-                  'Default',
+                  'Add Plants',
                   style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               );

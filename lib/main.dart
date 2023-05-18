@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:watermyplants/features/home_page/models/HomePlantModel.dart';
@@ -7,7 +8,17 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(HomePlantModelAdapter());
-  Box<HomePlantModel> box = await Hive.openBox('plants');
+  final Box<HomePlantModel> box = await Hive.openBox('plants');
+  AwesomeNotifications().initialize(
+      null,
+      [
+        NotificationChannel(
+            channelKey: 'basic_channel',
+            channelName: 'Reminder Notification',
+            channelDescription:
+                'This notification will make sure you don\'t miss out water your plants')
+      ],
+      debug: true);
   runApp(const MyApp());
 }
 

@@ -16,3 +16,9 @@ class HomeAddPlantEvent extends HomeEvent {
 
   HomeAddPlantEvent({required this.newPlant});
 }
+
+class HomeDeletePlantEvent extends HomeEvent {
+  final HomePlantModel newPlant;
+
+  HomeDeletePlantEvent({required this.newPlant});
+}
