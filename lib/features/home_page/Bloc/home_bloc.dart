@@ -1,9 +1,11 @@
 import 'dart:async';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
+import 'package:flutter/material.dart';
+
 import 'package:watermyplants/Data/plants_list.dart';
-import 'package:watermyplants/features/home_page/models/HomePlantModel.dart';
+import 'package:watermyplants/features/home_page/models/home_plant_model.dart';
 
 part 'home_event.dart';
 
@@ -31,8 +33,22 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> homeAddPlantEvent(
       HomeAddPlantEvent event, Emitter<HomeState> emit) {
-    PlantsList.plantsList.add(event.newPlant);
-    print('plant added to list');
+    PlantsList.addData(event.newPlant);
+    if (event.selectedTime != null) {
+      AwesomeNotifications().createNotification(
+        content: NotificationContent(
+          id: 1,
+          channelKey: 'basic_channel',
+          category: NotificationCategory.Reminder,
+          title: 'Water your plants!',
+          body: 'It\'s time to water your plants.',
+        ),
+        schedule: NotificationCalendar(
+            hour: event.selectedTime!.hour,
+            minute: event.selectedTime!.minute,
+            repeats: true),
+      );
+    }
     emit(HomeLoadedSuccessState(plants: PlantsList.plantsList));
     emit(HomeRefreshActionState());
     print('home success state');
@@ -41,7 +57,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
   FutureOr<void> homeDeletePlantEvent(
       HomeDeletePlantEvent event, Emitter<HomeState> emit) {
-    PlantsList.plantsList.remove(event.newPlant);
+    PlantsList.deleteData(event.newPlant);
     emit(HomeDeletePlantState());
   }
 

@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-part 'HomePlantModel.g.dart';
+part 'home_plant_model.g.dart';
 
 @HiveType(typeId: 0)
 class HomePlantModel {
@@ -10,7 +10,12 @@ class HomePlantModel {
   final String description;
   @HiveField(2)
   final String location;
+  @HiveField(3)
+  final String? id;
 
   HomePlantModel(
-      {required this.name, required this.description, required this.location});
+      {required this.id,
+      required this.name,
+      required this.description,
+      required this.location});
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:watermyplants/features/home_page/Bloc/home_bloc.dart';
-import 'package:watermyplants/features/home_page/models/HomePlantModel.dart';
+import 'package:watermyplants/features/home_page/models/home_plant_model.dart';
 
 class PlantTile extends StatelessWidget {
   const PlantTile(

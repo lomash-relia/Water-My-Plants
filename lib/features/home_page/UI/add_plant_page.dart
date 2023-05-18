@@ -1,13 +1,11 @@
-import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:watermyplants/features/home_page/Bloc/home_bloc.dart';
-import 'package:watermyplants/features/home_page/models/HomePlantModel.dart';
+import 'package:watermyplants/features/home_page/models/home_plant_model.dart';
+import 'package:uuid/uuid.dart';
 
 class AddPlantPage extends StatelessWidget {
   AddPlantPage({Key? key, required this.homeBloc}) : super(key: key);
-
-  final Box<HomePlantModel> box = Hive.box('plants');
 
   final HomeBloc homeBloc;
 
@@ -17,31 +15,24 @@ class AddPlantPage extends StatelessWidget {
   final TextEditingController _locationController = TextEditingController();
   TimeOfDay? selectedTime = TimeOfDay.now();
 
-  handlePlant() {
+  Future<void> handlePlant() async {
     if (_formKey.currentState!.validate()) {
+      var plantId = const Uuid().v1();
       HomePlantModel newPlant = HomePlantModel(
+          id: plantId,
           name: _titleController.text,
           description: _descriptionController.text,
           location: _locationController.text);
-      if (selectedTime != null) {
-        AwesomeNotifications().createNotification(
-          content: NotificationContent(
-            id: 1,
-            channelKey: 'basic_channel',
-            category: NotificationCategory.Reminder,
-            title: 'Water your plants!',
-            body: 'It\'s time to water your plants.',
-          ),
-          schedule: NotificationCalendar(
-              hour: selectedTime!.hour,
-              minute: selectedTime!.minute,
-              repeats: true),
-        );
-      }
-      box.add(newPlant);
-      print('plant added in storage');
-      homeBloc.add(HomeAddPlantEvent(newPlant: newPlant));
+      homeBloc.add(
+          HomeAddPlantEvent(newPlant: newPlant, selectedTime: selectedTime));
     }
+  }
+
+  Future<void> pickImage() async {
+    ImagePicker imagePicker = ImagePicker();
+    XFile? image = await imagePicker.pickImage(source: ImageSource.camera);
+    if (image == null) return;
+    //Uint8List imageBytes = await image.readAsBytes();
   }
 
   @override
@@ -56,6 +47,7 @@ class AddPlantPage extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 TextFormField(
                   controller: _titleController,
@@ -106,8 +98,11 @@ class AddPlantPage extends StatelessWidget {
                   height: 15,
                 ),
                 Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      IconButton(
+                          onPressed: pickImage,
+                          icon: const Icon(Icons.camera_alt_rounded)),
                       ElevatedButton(
                         onPressed: () async {
                           selectedTime = await showTimePicker(
@@ -118,11 +113,14 @@ class AddPlantPage extends StatelessWidget {
                         },
                         child: const Text('Set Reminder to Water'),
                       ),
-                      ElevatedButton(
-                        onPressed: handlePlant,
-                        child: const Text('Submit Plant'),
-                      ),
                     ]),
+                const SizedBox(
+                  height: 15,
+                ),
+                ElevatedButton(
+                  onPressed: handlePlant,
+                  child: const Text('Submit Plant'),
+                ),
               ],
             ),
           )),

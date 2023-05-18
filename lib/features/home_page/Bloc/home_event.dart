@@ -13,8 +13,9 @@ class HomeInfoButtonNavigateEvent extends HomeEvent {}
 
 class HomeAddPlantEvent extends HomeEvent {
   final HomePlantModel newPlant;
+  final TimeOfDay? selectedTime;
 
-  HomeAddPlantEvent({required this.newPlant});
+  HomeAddPlantEvent({required this.newPlant, required this.selectedTime});
 }
 
 class HomeDeletePlantEvent extends HomeEvent {

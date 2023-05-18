@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:watermyplants/features/home_page/Bloc/home_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:watermyplants/features/home_page/UI/AddPlantPage.dart';
-import 'package:watermyplants/features/home_page/UI/PlantTile.dart';
-import 'package:watermyplants/features/info_page/InfoPage.dart';
-import 'package:watermyplants/features/shop_page/ShopPage.dart';
+import 'package:watermyplants/features/home_page/UI/add_plant_page.dart';
+import 'package:watermyplants/features/home_page/UI/plant_tile.dart';
+import 'package:watermyplants/features/info_page/info_page.dart';
+import 'package:watermyplants/features/shop_page/shop_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
