@@ -11,6 +11,8 @@ class PlantTile extends StatelessWidget {
 
   final HomePlantModel homePlantModel;
 
+  final textStyle = const TextStyle(fontSize: 13, fontWeight: FontWeight.w500);
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -29,26 +31,17 @@ class PlantTile extends StatelessWidget {
               homePlantModel.name,
               style: const TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(
-              height: 10,
-              width: double.maxFinite,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Column(children: [
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
                     homePlantModel.location,
-                    style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.w500),
-                  ),
-                  const SizedBox(
-                    height: 10,
+                    style: textStyle,
                   ),
                   Text(
                     homePlantModel.description,
-                    style: const TextStyle(
-                        fontSize: 15, fontWeight: FontWeight.w500),
+                    style: textStyle,
                   ),
                 ]),
                 IconButton(
