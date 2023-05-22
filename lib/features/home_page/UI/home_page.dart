@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         onPressed: () {
           homeBloc.add(HomeAddPlantButtonNavigateEvent());
         },
-        child: const Icon(Icons.add),
+        child: const Icon(Icons.add_circle_rounded),
       ),
       appBar: AppBar(
         elevation: 0,
@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
                     constraints: const BoxConstraints.expand(),
                     decoration: const BoxDecoration(
                       image: DecorationImage(
-                          opacity: 0.7,
+                          opacity: 0.5,
                           image:
                               AssetImage('assets/images/plant_background.png'),
                           fit: BoxFit.cover),
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                 constraints: const BoxConstraints.expand(),
                 decoration: const BoxDecoration(
                   image: DecorationImage(
-                      opacity: 0.5,
+                      opacity: 0.4,
                       image: AssetImage('assets/images/plant_background.png'),
                       fit: BoxFit.cover),
                 ),

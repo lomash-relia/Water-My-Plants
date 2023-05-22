@@ -22,7 +22,6 @@ class _InfoPageState extends State<InfoPage> {
 
     response['data'].forEach((plant) {
       plantObjects = plantObjectFromMap(response['data']);
-      //print('${plant['id']} added');
     });
     setState(() {});
   }
@@ -38,6 +37,7 @@ class _InfoPageState extends State<InfoPage> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        title: const Text('Encyclopedia'),
         actions: [
           IconButton(
               onPressed: () {
@@ -48,7 +48,7 @@ class _InfoPageState extends State<InfoPage> {
                   });
                 }
               },
-              icon: const Icon(Icons.first_page_outlined)),
+              icon: const Icon(Icons.navigate_before_rounded)),
           IconButton(
               onPressed: () {
                 pageNumber++;
@@ -56,7 +56,7 @@ class _InfoPageState extends State<InfoPage> {
                   handleObject();
                 });
               },
-              icon: const Icon(Icons.last_page_outlined)),
+              icon: const Icon(Icons.navigate_next_rounded)),
         ],
       ),
       body: Container(

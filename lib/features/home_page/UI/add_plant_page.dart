@@ -33,9 +33,9 @@ class _AddPlantPageState extends State<AddPlantPage> {
       var plantId = const Uuid().v1();
       HomePlantModel newPlant = HomePlantModel(
         id: plantId,
-        name: _titleController.text,
-        description: _descriptionController.text,
-        location: _locationController.text,
+        name: _titleController.text.trim().toUpperCase(),
+        description: _descriptionController.text.trim(),
+        location: _locationController.text.trim().toUpperCase(),
       );
       widget.homeBloc.add(
           HomeAddPlantEvent(newPlant: newPlant, selectedTime: selectedTime));
@@ -57,18 +57,19 @@ class _AddPlantPageState extends State<AddPlantPage> {
         elevation: 0,
         title: const Text('Add Plant'),
       ),
-      body: Form(
-          key: _formKey,
-          child: Container(
-            constraints: const BoxConstraints.expand(),
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                  opacity: 0.4,
-                  image: AssetImage('assets/images/plant_background.png'),
-                  fit: BoxFit.cover),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(19.0),
+      body: Container(
+        constraints: const BoxConstraints.expand(),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              opacity: 0.2,
+              image: AssetImage('assets/images/plant_background.png'),
+              fit: BoxFit.cover),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Form(
+              key: _formKey,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -84,7 +85,9 @@ class _AddPlantPageState extends State<AddPlantPage> {
                     },
                     decoration: const InputDecoration(
                       label: Text('Plant Name'),
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(12.0))),
                     ),
                   ),
                   emptyGap(),
@@ -100,7 +103,9 @@ class _AddPlantPageState extends State<AddPlantPage> {
                     },
                     decoration: const InputDecoration(
                       label: Text('Plant Description'),
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(12.0))),
                     ),
                   ),
                   emptyGap(),
@@ -115,7 +120,9 @@ class _AddPlantPageState extends State<AddPlantPage> {
                     },
                     decoration: const InputDecoration(
                       label: Text('Location of Plant'),
-                      border: OutlineInputBorder(),
+                      border: OutlineInputBorder(
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(12.0))),
                     ),
                   ),
                   emptyGap(),
@@ -127,7 +134,7 @@ class _AddPlantPageState extends State<AddPlantPage> {
                         initialEntryMode: TimePickerEntryMode.input,
                       );
                     },
-                    child: const Text('Schedule Watering'),
+                    child: const Text('⏰ Schedule Watering'),
                   ),
                   emptyGap(),
                   ElevatedButton(
@@ -136,12 +143,14 @@ class _AddPlantPageState extends State<AddPlantPage> {
                       ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(content: Text('Plant Added 🥳')));
                     },
-                    child: const Text('Add Plant'),
+                    child: const Text('🪴 Add Plant'),
                   ),
                 ],
               ),
             ),
-          )),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -13,7 +13,10 @@ class _ShopPageState extends State<ShopPage> {
     ..setJavaScriptMode(JavaScriptMode.unrestricted)
     ..setBackgroundColor(const Color(0x00000000))
     ..setNavigationDelegate(NavigationDelegate(
-      onWebResourceError: (error) {},
+      onWebResourceError: (error) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Internet Connection is Off')));
+      },
     ))
     ..loadRequest(Uri.parse('https://www.ugaoo.com/'));
 
