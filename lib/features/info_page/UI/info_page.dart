@@ -13,12 +13,8 @@ class InfoPage extends StatefulWidget {
 class _InfoPageState extends State<InfoPage> {
   final HttpService httpService = HttpService();
   List<PlantObject> plantObjects = List.empty(growable: true);
-  int pageNumber = 1;
-  String apiKey = 'sk-cMZE646600cf168ee974';
-
-  _InfoPageState() {
-    handleObject();
-  }
+  static int pageNumber = 1;
+  static const apiKey = 'sk-cMZE646600cf168ee974';
 
   handleObject() async {
     var response = await httpService
@@ -29,6 +25,12 @@ class _InfoPageState extends State<InfoPage> {
       //print('${plant['id']} added');
     });
     setState(() {});
+  }
+
+  @override
+  void initState() {
+    handleObject();
+    super.initState();
   }
 
   @override
@@ -57,11 +59,20 @@ class _InfoPageState extends State<InfoPage> {
               icon: const Icon(Icons.last_page_outlined)),
         ],
       ),
-      body: ListView.builder(
-        itemCount: plantObjects.length,
-        itemBuilder: (context, index) {
-          return PlantListTile(plant: plantObjects[index]);
-        },
+      body: Container(
+        constraints: const BoxConstraints.expand(),
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+              opacity: 0.5,
+              image: AssetImage('assets/images/plant_background.png'),
+              fit: BoxFit.cover),
+        ),
+        child: ListView.builder(
+          itemCount: plantObjects.length,
+          itemBuilder: (context, index) {
+            return PlantListTile(plant: plantObjects[index]);
+          },
+        ),
       ),
     );
   }

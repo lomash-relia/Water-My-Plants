@@ -39,14 +39,14 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
               onPressed: () {
+                homeBloc.add(HomeInfoButtonNavigateEvent());
+              },
+              icon: const Icon(Icons.library_books_outlined)),
+          IconButton(
+              onPressed: () {
                 homeBloc.add(HomeShopButtonNavigateEvent());
               },
               icon: const Icon(Icons.shopping_bag_outlined)),
-          IconButton(
-              onPressed: () {
-                homeBloc.add(HomeInfoButtonNavigateEvent());
-              },
-              icon: const Icon(Icons.library_books_outlined))
         ],
       ),
       body: BlocConsumer<HomeBloc, HomeState>(
@@ -72,36 +72,57 @@ class _HomePageState extends State<HomePage> {
         builder: (context, state) {
           switch (state.runtimeType) {
             case HomeLoadingState:
-              return const Scaffold(
-                body: Center(
-                  child: CircularProgressIndicator(color: Colors.teal),
-                ),
+              return Scaffold(
+                body: Container(
+                    constraints: const BoxConstraints.expand(),
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          opacity: 0.7,
+                          image:
+                              AssetImage('assets/images/plant_background.png'),
+                          fit: BoxFit.cover),
+                    ),
+                    child: const Center(
+                        child: SizedBox(
+                            height: 25,
+                            width: 25,
+                            child: CircularProgressIndicator(
+                                color: Colors.lightGreen)))),
               );
             case HomeLoadedSuccessState:
               final successState = state as HomeLoadedSuccessState;
               return Scaffold(
-                  body: ListView.builder(
-                      itemCount: successState.plants.length,
-                      itemBuilder: (context, index) {
-                        return PlantTile(
-                          homePlantModel: successState.plants[index],
-                          homeBloc: homeBloc,
-                        );
-                      }));
+                  body: Container(
+                constraints: const BoxConstraints.expand(),
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                      opacity: 0.5,
+                      image: AssetImage('assets/images/plant_background.png'),
+                      fit: BoxFit.cover),
+                ),
+                child: ListView.builder(
+                    itemCount: successState.plants.length,
+                    itemBuilder: (context, index) {
+                      return PlantTile(
+                        homePlantModel: successState.plants[index],
+                        homeBloc: homeBloc,
+                      );
+                    }),
+              ));
             case HomeErrorState:
-              return const Scaffold(
-                body: Center(
-                  child: Text(
-                    'ERROR',
+            default:
+              return Scaffold(
+                body: Container(
+                  constraints: const BoxConstraints.expand(),
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/images/plant_background.png'),
+                        fit: BoxFit.cover),
+                  ),
+                  child: const Text(
+                    'Some Error Occurred',
                     style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                   ),
-                ),
-              );
-            default:
-              return const Center(
-                child: Text(
-                  'Add Plants',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                 ),
               );
           }

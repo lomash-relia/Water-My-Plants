@@ -23,11 +23,16 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedSplashScreen(
-      splash: 'assets/images/plant-tree-inscription-colorful-leaves.png',
-      splashIconSize: MediaQuery.of(context).size.height,
-      nextScreen: const HomePage(),
-      splashTransition: SplashTransition.fadeTransition,
+    return Center(
+      child: AnimatedSplashScreen(
+        splash:
+            'assets/images/plant-tree-inscription-colorful-leaves-removebg-preview.png',
+        splashIconSize: MediaQuery.of(context).size.height * 0.4,
+        backgroundColor: Colors.black12,
+        nextScreen: const HomePage(),
+        splashTransition: SplashTransition.fadeTransition,
+        animationDuration: const Duration(seconds: 2),
+      ),
     );
   }
 }

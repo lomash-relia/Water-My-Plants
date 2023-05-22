@@ -26,7 +26,7 @@ class HttpService {
 
   Future<Map> fetchPlantsData(String endPoint) async {
     try {
-      var response = await Dio().get('https://perenual.com/api/${endPoint}');
+      var response = await Dio().get('https://perenual.com/api/$endPoint');
       var output = response.data as Map<dynamic, dynamic>;
       return output;
     } on DioError catch (e) {

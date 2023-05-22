@@ -2,7 +2,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:watermyplants/features/home_page/models/home_plant_model.dart';
 
 class PlantsList {
-  // final Box<HomePlantModel> box = Hive.box('plants');
   static List<HomePlantModel> plantsList =
       List<HomePlantModel>.empty(growable: true);
 

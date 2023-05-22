@@ -48,6 +48,9 @@ class PlantTile extends StatelessWidget {
                     onPressed: () {
                       homeBloc
                           .add(HomeDeletePlantEvent(newPlant: homePlantModel));
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text(
+                              '${homePlantModel.location}\'s ${homePlantModel.name} Removed 👍')));
                     },
                     icon: const Icon(Icons.delete_forever_outlined))
               ],

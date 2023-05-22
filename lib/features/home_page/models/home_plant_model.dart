@@ -13,9 +13,10 @@ class HomePlantModel {
   @HiveField(3)
   final String? id;
 
-  HomePlantModel(
-      {required this.id,
-      required this.name,
-      required this.description,
-      required this.location});
+  HomePlantModel({
+    required this.id,
+    required this.name,
+    required this.description,
+    required this.location,
+  });
 }
