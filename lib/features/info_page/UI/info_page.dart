@@ -14,7 +14,7 @@ class _InfoPageState extends State<InfoPage> {
   final HttpService httpService = HttpService();
   List<PlantObject> plantObjects = List.empty(growable: true);
   static int pageNumber = 1;
-  static const apiKey = 'sk-cMZE646600cf168ee974';
+  static const apiKey = '';
 
   handleObject() async {
     var response = await httpService
