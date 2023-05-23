@@ -1,16 +1,20 @@
 # watermyplants
 
+
+**App Name:** Green Thumb
+
 (App for plant parents)
 
 Keep a check on the health of Your Plants.
 Facing difficulties in maintaining your plants? They don't survive even after your care?
 
-Use Water My Plants as a one stop tool to have a happy bunch.
+Use Water My Plants as a one stop tool to grow your happy bunch.
+
 ## Tech Stack
 
 **Client:** Flutter,Dart,Bloc
 
-**Server:** RapidAPI
+**Server:** Perenual API
 
 ## 🔗 Links
 
